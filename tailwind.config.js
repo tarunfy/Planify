@@ -1,0 +1,46 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {
+      fontFamily: {
+        "Helvetica-Now-Bold": ["Helvetica-Now-Bold", "sans-serif"],
+        "Helvetica-Now-ExBold": ["Helvetica-Now-ExBold", "sans-serif"],
+        "Helvetica-Now-Medium": ["Helvetica-Now-Medium", "sans-serif"],
+        "Helvetica-Now-Black": ["Helvetica-Now-Black", "sans-serif"],
+        "Helvetica-Now-Regular": ["Helvetica-Now-Regular", "sans-serif"],
+        "Helvetica-Now-Thin": ["Helvetica-Now-Thin", "sans-serif"],
+        "Helvetica-Now-Light": ["Helvetica-Now-Light", "sans-serif"],
+        "Helvetica-Now-ExLight": ["Helvetica-Now-ExLight", "sans-serif"],
+      },
+      colors: {
+        primary: {
+          50: "#fff5f2",
+          100: "#ffece6",
+          200: "#ffcebf",
+          300: "#ffb199",
+          400: "#ff774d",
+          500: "#FF3C00",
+          600: "#e63600",
+          700: "#bf2d00",
+          800: "#992400",
+          900: "#7d1d00",
+        },
+
+        secondary: {
+          50: "#f3f3f4",
+          100: "#e7e8e9",
+          200: "#c3c5c9",
+          300: "#9fa3a9",
+          400: "#585d68",
+          500: "#101827",
+          600: "#0e1623",
+          700: "#0c121d",
+          800: "#0a0e17",
+          900: "#080c13",
+        },
+      },
+    },
+  },
+  plugins: [],
+};

@@ -1,13 +1,44 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Helvetica-Now-Bold";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Bold.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-Black";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Black.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-ExBold";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-ExtraBold.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-ExLight";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-ExtraLight.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-Light";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Light.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-Medium";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Medium.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-Regular";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Regular.otf);
+}
+@font-face {
+  font-family: "Helvetica-Now-Thin";
+  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Thin.otf);
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer base {
+  html,
+  body {
+    background-color: #fafafa;
+    overflow-x: hidden;
+  }
 }
