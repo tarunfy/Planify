@@ -29,7 +29,7 @@ const Home = () => {
           <img
             src={heroImg}
             alt="hero-img"
-            className="hero-img h-[38rem] w-[60rem] object-cover"
+            className="hero-img h-[30rem] w-[60rem] object-cover"
           />
         </div>
       </div>

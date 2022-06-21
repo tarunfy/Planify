@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleOpen = (type) => {
     setModalType(type);
@@ -61,6 +62,7 @@ export const AuthProvider = ({ children }) => {
         setEmail,
         setPassword,
         setConfirmPassword,
+        isLoading,
       }}
     >
       {children}

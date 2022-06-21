@@ -11,7 +11,8 @@ const style = {
   width: 400,
   bgcolor: "background.paper",
   boxShadow: 24,
-  p: 4,
+  px: 4,
+  py: 3,
 };
 
 export default function BasicModal() {
@@ -39,7 +40,7 @@ export default function BasicModal() {
       >
         <Box sx={style}>
           <form
-            className="flex flex-col items-start  space-y-5"
+            className="flex relative flex-col items-start  space-y-5"
             onSubmit={modalType === "signup" ? signup : login}
           >
             <div className="flex flex-col space-y-1 w-full">
@@ -95,12 +96,20 @@ export default function BasicModal() {
                 />
               </div>
             )}
-            <button
-              type="submit"
-              className="capitalize px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular"
-            >
-              {modalType}
-            </button>
+            <div className="w-full space-y-2">
+              <button
+                type="submit"
+                className="px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular"
+              >
+                {modalType === "signup" ? "Sign up" : "Login"}
+              </button>
+              <button
+                onClick={handleClose}
+                className="capitalize px-4 py-2 bg-secondary-500 text-white w-full text-lg font-Helvetica-Now-Regular"
+              >
+                Cancel
+              </button>
+            </div>
           </form>
         </Box>
       </Modal>
