@@ -1,0 +1,40 @@
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+import heroImg from "../assets/images/meeting.jpeg";
+import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
+
+const Home = () => {
+  const { handleOpen } = useContext(AuthContext);
+  return (
+    <>
+      <div className="h-screen z-10 flex justify-between items-center pl-36">
+        <div className="max-w-3xl space-y-5">
+          <h1 className="text-7xl z-20 text-secondary-700 font-Helvetica-Now-Bold leading-[5rem]">
+            The <span className="text-primary-500">scheduling</span> app your
+            were waiting
+            <span className="block">for.</span>
+          </h1>
+          <p className="max-w-2xl text-secondary-400 text-xl tracking-wider">
+            Planify is a free appointment scheduling app that makes life easier.
+            The app helps you effortlessly schedule appointments.
+          </p>
+          <button
+            onClick={() => handleOpen("signup")}
+            className="text-white focus:outline-none bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-lg"
+          >
+            Sign up for free <ArrowRightAltRoundedIcon />
+          </button>
+        </div>
+        <div>
+          <img
+            src={heroImg}
+            alt="hero-img"
+            className="hero-img h-[38rem] w-[60rem] object-cover"
+          />
+        </div>
+      </div>
+    </>
+  );
+};
+
+export default Home;
