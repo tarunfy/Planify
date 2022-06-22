@@ -2,11 +2,14 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import heroImg from "../assets/images/meeting.jpeg";
 import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
+import Navbar from "../components/Navbar";
+import Auth from "../components/Auth";
 
 const Home = () => {
   const { handleOpen } = useContext(AuthContext);
   return (
     <>
+      <Navbar />
       <div className="h-screen z-10 flex justify-between items-center pl-36">
         <div className="max-w-3xl space-y-5">
           <h1 className="text-7xl z-20 text-secondary-700 font-Helvetica-Now-Bold leading-[5rem]">
@@ -33,6 +36,7 @@ const Home = () => {
           />
         </div>
       </div>
+      <Auth />
     </>
   );
 };

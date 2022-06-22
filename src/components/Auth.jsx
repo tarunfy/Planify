@@ -28,6 +28,7 @@ export default function BasicModal() {
     setEmail,
     setConfirmPassword,
     setPassword,
+    isLoading,
   } = useContext(AuthContext);
 
   return (
@@ -41,7 +42,11 @@ export default function BasicModal() {
         <Box sx={style}>
           <form
             className="flex relative flex-col items-start  space-y-5"
-            onSubmit={modalType === "signup" ? signup : login}
+            onSubmit={
+              modalType === "signup"
+                ? (e) => signup(e, email, password)
+                : (e) => login(e, email, password)
+            }
           >
             <div className="flex flex-col space-y-1 w-full">
               <label
@@ -98,14 +103,16 @@ export default function BasicModal() {
             )}
             <div className="w-full space-y-2">
               <button
+                disabled={isLoading}
                 type="submit"
-                className="px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular"
+                className="px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:bg-primary-500/50 disabled:text-white/50"
               >
                 {modalType === "signup" ? "Sign up" : "Login"}
               </button>
               <button
+                disabled={isLoading}
                 onClick={handleClose}
-                className="capitalize px-4 py-2 bg-secondary-500 text-white w-full text-lg font-Helvetica-Now-Regular"
+                className="capitalize px-4 py-2 bg-secondary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:bg-secondary-500/50 disabled:text-white/50"
               >
                 Cancel
               </button>
