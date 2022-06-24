@@ -3,6 +3,10 @@ module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
     extend: {
+      boxShadow: {
+        custom:
+          "rgba(17, 17, 26, 0.05) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px",
+      },
       fontFamily: {
         "Helvetica-Now-Bold": ["Helvetica-Now-Bold", "sans-serif"],
         "Helvetica-Now-ExBold": ["Helvetica-Now-ExBold", "sans-serif"],

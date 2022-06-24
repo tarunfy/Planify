@@ -3,7 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import heroImg from "../assets/images/meeting.jpeg";
 import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
 import Navbar from "../components/Navbar";
-import Auth from "../components/Auth";
+import Auth from "../components/AuthModal";
 
 const Home = () => {
   const { handleOpen } = useContext(AuthContext);

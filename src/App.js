@@ -7,7 +7,7 @@ import { Switch, Route, Redirect } from "react-router-dom";
 function App() {
   const { currentUser, isFetching } = useContext(AuthContext);
 
-  if (isFetching && !currentUser) return "Loading...";
+  //if (isFetching && !currentUser) return "Loading...";
 
   return (
     <>
