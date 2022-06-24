@@ -5,9 +5,7 @@ import Dashboard from "./pages/Dashboard";
 import { Switch, Route, Redirect } from "react-router-dom";
 
 function App() {
-  const { currentUser, isFetching } = useContext(AuthContext);
-
-  //if (isFetching && !currentUser) return "Loading...";
+  const { currentUser } = useContext(AuthContext);
 
   return (
     <>
@@ -26,6 +24,8 @@ function App() {
             currentUser ? <Dashboard {...props} /> : <Redirect to="/" />
           }
         />
+
+        <Route path="*" render={() => <Redirect to="/" />} />
       </Switch>
     </>
   );

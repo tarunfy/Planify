@@ -1,7 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import nProgress from "nprogress";
 import { supabase } from "../utils/dbConfig";
-import { useHistory } from "react-router";
 
 export const AuthContext = createContext(null);
 
@@ -17,6 +16,7 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
+      console.log("auth state changed called");
       setCurrentUser(session?.user);
       setIsFetching(false);
     });
