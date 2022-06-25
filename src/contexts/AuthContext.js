@@ -6,7 +6,6 @@ export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(supabase.auth.user());
-  const [isFetching, setIsFetching] = useState(true);
   const [open, setOpen] = useState(false);
   const [modalType, setModalType] = useState("");
   const [email, setEmail] = useState("");
@@ -19,7 +18,6 @@ export const AuthProvider = ({ children }) => {
     supabase.auth.onAuthStateChange((event, session) => {
       console.log("auth state changed called");
       setCurrentUser(session?.user);
-      setIsFetching(false);
     });
   }, []);
 
@@ -37,8 +35,7 @@ export const AuthProvider = ({ children }) => {
     setOpen(false);
   };
 
-  const login = async (e, email, password) => {
-    e.preventDefault();
+  const login = async (email, password) => {
     nProgress.start();
     setIsLoading(true);
 
@@ -46,6 +43,7 @@ export const AuthProvider = ({ children }) => {
       email,
       password,
     });
+
     if (error) {
       setAuthError(error.message);
     } else {
@@ -56,8 +54,7 @@ export const AuthProvider = ({ children }) => {
     nProgress.done();
   };
 
-  const signup = async (e, email, password, confirmPassword) => {
-    e.preventDefault();
+  const signup = async (email, password, confirmPassword) => {
     nProgress.start();
     setIsLoading(true);
 
@@ -72,7 +69,6 @@ export const AuthProvider = ({ children }) => {
       email,
       password,
     });
-
     if (error) {
       setAuthError(error.message);
     } else {
@@ -100,7 +96,6 @@ export const AuthProvider = ({ children }) => {
         setConfirmPassword,
         isLoading,
         currentUser,
-        isFetching,
         authError,
       }}
     >

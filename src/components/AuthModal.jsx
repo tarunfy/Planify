@@ -32,6 +32,15 @@ export default function BasicModal() {
     authError,
   } = useContext(AuthContext);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (modalType === "signup") {
+      signup(email, password, confirmPassword);
+    } else {
+      login(email, password);
+    }
+  };
+
   return (
     <div>
       <Modal
@@ -43,11 +52,7 @@ export default function BasicModal() {
         <Box sx={style}>
           <form
             className="flex relative flex-col items-start space-y-5"
-            onSubmit={
-              modalType === "signup"
-                ? (e) => signup(e, email, password, confirmPassword)
-                : (e) => login(e, email, password)
-            }
+            onSubmit={(e) => handleSubmit(e)}
           >
             <div className="w-full">
               {authError && (
