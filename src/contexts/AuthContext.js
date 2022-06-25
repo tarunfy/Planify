@@ -42,18 +42,14 @@ export const AuthProvider = ({ children }) => {
     nProgress.start();
     setIsLoading(true);
 
-    try {
-      const { error } = await supabase.auth.signIn({
-        email,
-        password,
-      });
-      if (error) {
-        throw error;
-      } else {
-        handleClose();
-      }
-    } catch (error) {
+    const { error } = await supabase.auth.signIn({
+      email,
+      password,
+    });
+    if (error) {
       setAuthError(error.message);
+    } else {
+      handleClose();
     }
 
     setIsLoading(false);
@@ -72,18 +68,15 @@ export const AuthProvider = ({ children }) => {
       return;
     }
 
-    try {
-      const { error } = await supabase.auth.signUp({
-        email,
-        password,
-      });
-      if (error) {
-        throw error;
-      } else {
-        handleClose();
-      }
-    } catch (error) {
+    const { error } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (error) {
       setAuthError(error.message);
+    } else {
+      handleClose();
     }
 
     setIsLoading(false);
