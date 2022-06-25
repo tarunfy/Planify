@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }) => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
@@ -29,6 +30,7 @@ export const AuthProvider = ({ children }) => {
 
   const handleClose = () => {
     setModalType("");
+    setAuthError("");
     setEmail("");
     setPassword("");
     setConfirmPassword("");
@@ -45,33 +47,44 @@ export const AuthProvider = ({ children }) => {
         email,
         password,
       });
-      if (error) throw error;
+      if (error) {
+        throw error;
+      } else {
+        handleClose();
+      }
     } catch (error) {
-      console.log(error.message);
+      setAuthError(error.message);
     }
-
-    handleClose();
 
     setIsLoading(false);
     nProgress.done();
   };
 
-  const signup = async (e, email, password) => {
+  const signup = async (e, email, password, confirmPassword) => {
     e.preventDefault();
     nProgress.start();
     setIsLoading(true);
+
+    if (password !== confirmPassword) {
+      setAuthError("Passwords not match");
+      setIsLoading(false);
+      nProgress.done();
+      return;
+    }
 
     try {
       const { error } = await supabase.auth.signUp({
         email,
         password,
       });
-      if (error) throw error;
+      if (error) {
+        throw error;
+      } else {
+        handleClose();
+      }
     } catch (error) {
-      console.log(error.message);
+      setAuthError(error.message);
     }
-
-    handleClose();
 
     setIsLoading(false);
     nProgress.done();
@@ -95,6 +108,7 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         currentUser,
         isFetching,
+        authError,
       }}
     >
       {children}

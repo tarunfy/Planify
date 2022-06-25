@@ -29,6 +29,7 @@ export default function BasicModal() {
     setConfirmPassword,
     setPassword,
     isLoading,
+    authError,
   } = useContext(AuthContext);
 
   return (
@@ -41,13 +42,20 @@ export default function BasicModal() {
       >
         <Box sx={style}>
           <form
-            className="flex relative flex-col items-start  space-y-5"
+            className="flex relative flex-col items-start space-y-5"
             onSubmit={
               modalType === "signup"
-                ? (e) => signup(e, email, password)
+                ? (e) => signup(e, email, password, confirmPassword)
                 : (e) => login(e, email, password)
             }
           >
+            <div className="w-full">
+              {authError && (
+                <p className="text-center text-base text-red-500">
+                  {authError}
+                </p>
+              )}
+            </div>
             <div className="flex flex-col space-y-1 w-full">
               <label
                 htmlFor="email"
