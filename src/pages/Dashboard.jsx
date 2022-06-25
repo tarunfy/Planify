@@ -1,12 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../contexts/AuthContext";
 import React from "react";
 import EventCard from "../components/EventCard";
 import EventModal from "../components/EventModal";
 
 const Dashboard = () => {
-  const { currentUser } = useContext(AuthContext);
-
   return (
     <>
       <div className="px-16 py-20">
