@@ -24,14 +24,22 @@ export default function BasicModal() {
   const [isAvailableThu, setIsAvailableThu] = useState(true);
   const [isAvailableFri, setIsAvailableFri] = useState(false);
   const [isAvailableSat, setIsAvailableSat] = useState(true);
+  const [eventName, setEventName] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [eventDuration, setEventDuration] = useState("");
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(eventName, eventDescription, eventDuration);
+  };
 
   return (
     <div>
       <button
         onClick={handleOpen}
-        className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md transition font-Helvetica-Now-Regular"
+        className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
       >
         Create <AddIcon />
       </button>
@@ -51,7 +59,7 @@ export default function BasicModal() {
             </p>
           </div>
 
-          <form className="space-y-5">
+          <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex flex-col items-start space-y-1 w-full">
               <label
                 htmlFor="event-name"
@@ -62,6 +70,8 @@ export default function BasicModal() {
               <input
                 type="text"
                 required
+                value={eventName}
+                onChange={(e) => setEventName(e.target.value)}
                 autoComplete="off"
                 id="event-name"
                 className="focus:outline-none border p-3 placeholder:text-base font-Helvetica-Now-Light bg-slate-50 w-full"
@@ -77,6 +87,8 @@ export default function BasicModal() {
               <textarea
                 name="event-desc"
                 id="event-desc"
+                value={eventDescription}
+                onChange={(e) => setEventDescription(e.target.value)}
                 placeholder="Write a summary and any details your invitee should know about the event."
                 className="focus:outline-none border p-3 placeholder:text-base font-Helvetica-Now-Light bg-slate-50 w-full"
                 cols="2"
@@ -92,13 +104,23 @@ export default function BasicModal() {
               </label>
               <div className="flex space-x-4 items-center justify-start">
                 <div className="flex items-center space-x-2">
-                  <input type="radio" name="event-duration" id="30-mins" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setEventDuration(e.target.id)}
+                    name="event-duration"
+                    id="30-mins"
+                  />
                   <label htmlFor="30-mins" className="font-Helvetica-Now-Light">
                     30 mins
                   </label>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <input type="radio" name="event-duration" id="1-hour" />
+                  <input
+                    type="radio"
+                    onChange={(e) => setEventDuration(e.target.id)}
+                    name="event-duration"
+                    id="1-hour"
+                  />
                   <label htmlFor="1-hour" className="font-Helvetica-Now-Light">
                     1 hr
                   </label>
@@ -119,7 +141,9 @@ export default function BasicModal() {
                       type="checkbox"
                       name="day"
                       id="sun"
+                      checked={isAvailableSun}
                       onChange={(e) => setIsAvailableSun(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="sun"
@@ -142,7 +166,9 @@ export default function BasicModal() {
                       type="checkbox"
                       name="day"
                       id="mon"
+                      checked={isAvailableMon}
                       onChange={(e) => setIsAvailableMon(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="mon"
@@ -167,6 +193,7 @@ export default function BasicModal() {
                       id="tue"
                       checked={isAvailableTue}
                       onChange={(e) => setIsAvailableTue(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="tue"
@@ -189,7 +216,9 @@ export default function BasicModal() {
                       type="checkbox"
                       name="day"
                       id="wed"
+                      checked={isAvailableWed}
                       onChange={(e) => setIsAvailableWed(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="wed"
@@ -214,6 +243,7 @@ export default function BasicModal() {
                       id="thu"
                       checked={isAvailableThu}
                       onChange={(e) => setIsAvailableThu(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="thu"
@@ -236,7 +266,9 @@ export default function BasicModal() {
                       type="checkbox"
                       name="day"
                       id="fri"
+                      checked={isAvailableFri}
                       onChange={(e) => setIsAvailableFri(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="fri"
@@ -261,6 +293,7 @@ export default function BasicModal() {
                       id="sat"
                       checked={isAvailableSat}
                       onChange={(e) => setIsAvailableSat(e.target.checked)}
+                      className="focus:outline-none"
                     />
                     <label
                       htmlFor="sat"
@@ -281,8 +314,8 @@ export default function BasicModal() {
             </div>
             <div className="w-full flex justify-end">
               <button
-                onClick={handleClose}
-                className="bg-primary-500 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white"
+                type="submit"
+                className="bg-primary-500 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white focus:outline-none"
               >
                 Submit
               </button>
