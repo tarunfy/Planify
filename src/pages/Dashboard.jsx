@@ -7,7 +7,7 @@ const Dashboard = () => {
     <>
       <div className="px-16 py-20">
         <div className="flex justify-between items-center mb-20">
-          <h1 className="font-Helvetica-Now-Medium tracking-tight text-6xl">
+          <h1 className="font-Helvetica-Now-Medium tracking-tight text-5xl">
             Your Plans
           </h1>
           <EventModal />

@@ -41,7 +41,7 @@
 }
 
 #nprogress .bar {
-  background: #29d;
+  background: #ff3c00;
 
   position: fixed;
   z-index: 1031;
@@ -59,7 +59,7 @@
   right: 0px;
   width: 100px;
   height: 100%;
-  box-shadow: 0 0 10px #29d, 0 0 5px #29d;
+  box-shadow: 0 0 10px #ff3c00, 0 0 5px #ff3c00;
   opacity: 1;
 
   -webkit-transform: rotate(3deg) translate(0px, -4px);
@@ -100,4 +100,16 @@
     background-color: #fafafa;
     overflow-x: hidden;
   }
-} ;
+}
+
+@layer components {
+  .li-availability {
+    @apply flex space-x-6 items-center justify-between;
+  }
+  .availability-input-wrapper {
+    @apply flex items-center space-x-2 justify-start;
+  }
+  .availability-label {
+    @apply font-Helvetica-Now-Bold text-xs w-10;
+  }
+}

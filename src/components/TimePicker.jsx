@@ -31,6 +31,7 @@ export default function BasicTimePicker() {
         <option value="10:00am">10:00am</option>
         <option value="11:00am">11:00am</option>
       </select>
+
       <div className="w-2 h-[2px] bg-slate-600 rounded-full"></div>
       <select
         name="time"

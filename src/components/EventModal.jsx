@@ -17,6 +17,7 @@ const style = {
 
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
+
   const [isAvailableSun, setIsAvailableSun] = useState(false);
   const [isAvailableMon, setIsAvailableMon] = useState(false);
   const [isAvailableTue, setIsAvailableTue] = useState(true);
@@ -24,12 +25,13 @@ export default function BasicModal() {
   const [isAvailableThu, setIsAvailableThu] = useState(true);
   const [isAvailableFri, setIsAvailableFri] = useState(false);
   const [isAvailableSat, setIsAvailableSat] = useState(true);
+
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
-
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(eventName, eventDescription, eventDuration);
@@ -135,8 +137,8 @@ export default function BasicModal() {
                 How do you want to offer your availability for this event type?
               </label>
               <ul className="space-y-2 flex flex-col items-start">
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -145,10 +147,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableSun(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="sun"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="sun" className="availability-label">
                       SUN
                     </label>
                   </div>
@@ -160,8 +159,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -170,10 +169,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableMon(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="mon"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="mon" className="availability-label">
                       MON
                     </label>
                   </div>
@@ -185,8 +181,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -195,10 +191,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableTue(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="tue"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="tue" className="availability-label">
                       TUE
                     </label>
                   </div>
@@ -210,8 +203,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -220,10 +213,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableWed(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="wed"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="wed" className="availability-label">
                       WED
                     </label>
                   </div>
@@ -235,8 +225,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -245,10 +235,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableThu(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="thu"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="thu" className="availability-label">
                       THU
                     </label>
                   </div>
@@ -260,8 +247,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -270,10 +257,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableFri(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="fri"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="fri" className="availability-label">
                       FRI
                     </label>
                   </div>
@@ -285,8 +269,8 @@ export default function BasicModal() {
                     </p>
                   )}
                 </li>
-                <li className="flex space-x-6 items-center justify-between">
-                  <div className="flex items-center space-x-2 justify-start">
+                <li className="li-availability">
+                  <div className="availability-input-wrapper">
                     <input
                       type="checkbox"
                       name="day"
@@ -295,10 +279,7 @@ export default function BasicModal() {
                       onChange={(e) => setIsAvailableSat(e.target.checked)}
                       className="focus:outline-none"
                     />
-                    <label
-                      htmlFor="sat"
-                      className="font-Helvetica-Now-Bold text-xs w-10"
-                    >
+                    <label htmlFor="sat" className="availability-label">
                       SAT
                     </label>
                   </div>
