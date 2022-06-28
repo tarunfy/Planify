@@ -12,7 +12,11 @@ const Dashboard = () => {
           </h1>
           <EventModal />
         </div>
-        <EventCard />
+        <div div className="w-full grid grid-cols-3 gap-5">
+          <EventCard />
+          <EventCard />
+          <EventCard />
+        </div>
       </div>
     </>
   );
