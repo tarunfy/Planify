@@ -110,6 +110,6 @@
     @apply flex items-center space-x-2 justify-start;
   }
   .availability-label {
-    @apply font-Helvetica-Now-Bold text-xs w-10;
+    @apply font-Helvetica-Now-Bold text-xs w-10 uppercase;
   }
 }

@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "@mui/material/Modal";
-import TimePicker from "./TimePicker";
+import DayContainer from "./DayContainer";
 
 const style = {
   position: "absolute",
@@ -15,26 +15,24 @@ const style = {
   height: "650px",
 };
 
+const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
+
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
-
-  const [isAvailableSun, setIsAvailableSun] = useState(false);
-  const [isAvailableMon, setIsAvailableMon] = useState(false);
-  const [isAvailableTue, setIsAvailableTue] = useState(true);
-  const [isAvailableWed, setIsAvailableWed] = useState(false);
-  const [isAvailableThu, setIsAvailableThu] = useState(true);
-  const [isAvailableFri, setIsAvailableFri] = useState(false);
-  const [isAvailableSat, setIsAvailableSat] = useState(true);
-
+  const [daysData, setDaysData] = useState({});
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
+
+  useEffect(() => {
+    console.log(daysData);
+  }, [daysData]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(eventName, eventDescription, eventDuration);
+    console.log(eventName, eventDescription, eventDuration, daysData);
   };
 
   return (
@@ -137,160 +135,13 @@ export default function BasicModal() {
                 How do you want to offer your availability for this event type?
               </label>
               <ul className="space-y-2 flex flex-col items-start">
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="sun"
-                      checked={isAvailableSun}
-                      onChange={(e) => setIsAvailableSun(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="sun" className="availability-label">
-                      SUN
-                    </label>
-                  </div>
-                  {isAvailableSun ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="mon"
-                      checked={isAvailableMon}
-                      onChange={(e) => setIsAvailableMon(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="mon" className="availability-label">
-                      MON
-                    </label>
-                  </div>
-                  {isAvailableMon ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="tue"
-                      checked={isAvailableTue}
-                      onChange={(e) => setIsAvailableTue(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="tue" className="availability-label">
-                      TUE
-                    </label>
-                  </div>
-                  {isAvailableTue ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="wed"
-                      checked={isAvailableWed}
-                      onChange={(e) => setIsAvailableWed(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="wed" className="availability-label">
-                      WED
-                    </label>
-                  </div>
-                  {isAvailableWed ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="thu"
-                      checked={isAvailableThu}
-                      onChange={(e) => setIsAvailableThu(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="thu" className="availability-label">
-                      THU
-                    </label>
-                  </div>
-                  {isAvailableThu ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="fri"
-                      checked={isAvailableFri}
-                      onChange={(e) => setIsAvailableFri(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="fri" className="availability-label">
-                      FRI
-                    </label>
-                  </div>
-                  {isAvailableFri ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
-                <li className="li-availability">
-                  <div className="availability-input-wrapper">
-                    <input
-                      type="checkbox"
-                      name="day"
-                      id="sat"
-                      checked={isAvailableSat}
-                      onChange={(e) => setIsAvailableSat(e.target.checked)}
-                      className="focus:outline-none"
-                    />
-                    <label htmlFor="sat" className="availability-label">
-                      SAT
-                    </label>
-                  </div>
-                  {isAvailableSat ? (
-                    <TimePicker />
-                  ) : (
-                    <p className="text-sm font-Helvetica-Now-Light">
-                      Unavailable
-                    </p>
-                  )}
-                </li>
+                {days.map((day, index) => (
+                  <DayContainer
+                    key={index}
+                    dayName={day}
+                    setDaysData={setDaysData}
+                  />
+                ))}
               </ul>
             </div>
             <div className="w-full flex justify-end">
