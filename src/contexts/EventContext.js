@@ -4,6 +4,36 @@ import { supabase } from "../utils/dbConfig";
 
 export const EventContext = createContext(null);
 
-export default EventProvider = ({ children }) => {
-  return <EventContext.Provider value={{}}>{children}</EventContext.Provider>;
+export const EventProvider = ({ children }) => {
+  const [eventName, setEventName] = useState("");
+  const [eventDescription, setEventDescription] = useState("");
+  const [eventDuration, setEventDuration] = useState("");
+  const [daysData, setDaysData] = useState({});
+
+  useEffect(() => {
+    console.log(daysData);
+  }, [daysData]);
+
+  const createEvent = async () => {
+    nProgress.start();
+
+    nProgress.done();
+  };
+
+  return (
+    <EventContext.Provider
+      value={{
+        createEvent,
+        eventName,
+        setEventName,
+        eventDescription,
+        setEventDescription,
+        eventDuration,
+        setEventDuration,
+        setDaysData,
+      }}
+    >
+      {children}
+    </EventContext.Provider>
+  );
 };

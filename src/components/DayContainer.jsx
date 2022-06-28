@@ -11,7 +11,7 @@ const DayContainer = ({ dayName, setDaysData }) => {
       ...d,
       [dayName]: isAvailable ? { from, to } : null,
     }));
-  }, [isAvailable]);
+  }, [isAvailable, from, to]);
 
   return (
     <>
