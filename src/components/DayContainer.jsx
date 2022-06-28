@@ -1,16 +1,29 @@
 import { useEffect, useState } from "react";
 import TimePicker from "./TimePicker";
+import moment from "moment";
 
 const DayContainer = ({ dayName, setDaysData }) => {
   const [isAvailable, setIsAvailable] = useState(false);
   const [from, setFrom] = useState("12:00pm");
   const [to, setTo] = useState("5:00pm");
+  const [error, setError] = useState("");
 
   useEffect(() => {
-    setDaysData((d) => ({
-      ...d,
-      [dayName]: isAvailable ? { from, to } : null,
-    }));
+    const beginningTime = moment(to.toString(), "h:mma");
+    const endTime = moment(from.toString(), "h:mma");
+    if (from === to) {
+      setError("Choose different time slots");
+      return;
+    } else if (beginningTime.isBefore(endTime)) {
+      setError("Start time cannot be bigger than end time");
+      return;
+    } else {
+      setError("");
+      setDaysData((d) => ({
+        ...d,
+        [dayName]: isAvailable ? { from, to } : null,
+      }));
+    }
   }, [isAvailable, from, to]);
 
   return (
@@ -30,7 +43,13 @@ const DayContainer = ({ dayName, setDaysData }) => {
           </label>
         </div>
         {isAvailable ? (
-          <TimePicker from={from} to={to} setFrom={setFrom} setTo={setTo} />
+          <TimePicker
+            error={error}
+            from={from}
+            to={to}
+            setFrom={setFrom}
+            setTo={setTo}
+          />
         ) : (
           <p className="text-sm font-Helvetica-Now-Light">Unavailable</p>
         )}

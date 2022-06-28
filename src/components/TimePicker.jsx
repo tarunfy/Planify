@@ -1,26 +1,29 @@
-export default function BasicTimePicker({ from, to, setFrom, setTo }) {
+export default function BasicTimePicker({ from, to, setFrom, setTo, error }) {
   return (
-    <div className="flex items-center justify-between space-x-4">
-      <select
-        name="time"
-        id="from"
-        value={from}
-        onChange={(e) => setFrom(e.target.value)}
-        className="px-4 py-2 border focus:outline-none"
-      >
-        <Opt />
-      </select>
+    <div className="flex items-start flex-col">
+      <div className="flex items-center justify-between space-x-4">
+        <select
+          name="time"
+          id="from"
+          value={from}
+          onChange={(e) => setFrom(e.target.value)}
+          className="px-4 py-2 border focus:outline-none"
+        >
+          <Opt />
+        </select>
 
-      <div className="w-2 h-[2px] bg-slate-600 rounded-full"></div>
-      <select
-        name="time"
-        id="to"
-        value={to}
-        onChange={(e) => setTo(e.target.value)}
-        className="px-4 py-2 border focus:outline-none"
-      >
-        <Opt />
-      </select>
+        <div className="w-2 h-[2px] bg-slate-600 rounded-full"></div>
+        <select
+          name="time"
+          id="to"
+          value={to}
+          onChange={(e) => setTo(e.target.value)}
+          className="px-4 py-2 border focus:outline-none"
+        >
+          <Opt />
+        </select>
+      </div>
+      {error && <p className="text-sm text-red-500 text-center">{error}</p>}
     </div>
   );
 }
