@@ -46,6 +46,7 @@ export default function BasicModal() {
       <Modal
         open={open}
         onClose={handleClose}
+        className={`${isLoading && "pointer-events-none"}`}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -118,14 +119,14 @@ export default function BasicModal() {
               <button
                 disabled={isLoading}
                 type="submit"
-                className="px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:bg-primary-500/50 disabled:text-white/50"
+                className="px-4 py-2 bg-primary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50"
               >
                 {modalType === "signup" ? "Sign up" : "Login"}
               </button>
               <button
                 disabled={isLoading}
                 onClick={handleClose}
-                className="capitalize px-4 py-2 bg-secondary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:bg-secondary-500/50 disabled:text-white/50"
+                className="capitalize px-4 py-2 bg-secondary-500 text-white w-full text-lg font-Helvetica-Now-Regular disabled:bg-secondary-500/50 disabled:cursor-not-allowed disabled:text-white/50"
               >
                 Cancel
               </button>

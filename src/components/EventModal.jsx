@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import nProgress, { set } from "nprogress";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "@mui/material/Modal";
@@ -19,20 +20,38 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [daysData, setDaysData] = useState({});
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
 
-  useEffect(() => {
-    console.log(daysData);
-  }, [daysData]);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(eventName, eventDescription, eventDuration, daysData);
+    setIsLoading(true);
+    nProgress.start();
+
+    const data = {
+      name: eventName,
+      description: eventDescription,
+      duration: eventDuration,
+      daysData,
+    };
+
+    console.log(data);
+
+    setTimeout(() => {
+      setOpen(false);
+      setIsLoading(false);
+      setEventDescription("");
+      setEventDuration("");
+      setEventName("");
+      setDaysData({});
+      nProgress.done();
+    }, 3000);
   };
 
   return (
@@ -46,6 +65,7 @@ export default function BasicModal() {
       <Modal
         open={open}
         onClose={handleClose}
+        className={`${isLoading && "pointer-events-none"}`}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -146,8 +166,9 @@ export default function BasicModal() {
             </div>
             <div className="w-full flex justify-end">
               <button
+                disabled={isLoading}
                 type="submit"
-                className="bg-primary-500 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white focus:outline-none"
+                className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white focus:outline-none"
               >
                 Submit
               </button>
