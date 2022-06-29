@@ -139,10 +139,10 @@ export default function BasicModal() {
                     type="radio"
                     onChange={(e) => setEventDuration(e.target.id)}
                     name="event-duration"
-                    id="1-hour"
+                    id="60 mins"
                   />
-                  <label htmlFor="1-hour" className="font-Helvetica-Now-Light">
-                    1 hr
+                  <label htmlFor="60-mins" className="font-Helvetica-Now-Light">
+                    60 mins
                   </label>
                 </div>
               </div>
