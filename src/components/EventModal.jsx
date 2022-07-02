@@ -1,5 +1,6 @@
-import { useState } from "react";
-import nProgress, { set } from "nprogress";
+import { useState, useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
+import nProgress from "nprogress";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "@mui/material/Modal";
@@ -26,8 +27,16 @@ export default function BasicModal() {
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
 
+  const { logout } = useContext(AuthContext);
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+
+  const handleClose = () => {
+    setOpen(false);
+    setEventDescription("");
+    setEventDuration("");
+    setEventName("");
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,12 +65,20 @@ export default function BasicModal() {
 
   return (
     <div>
-      <button
-        onClick={handleOpen}
-        className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
-      >
-        Create <AddIcon />
-      </button>
+      <div className="flex items-center space-x-2">
+        <button
+          onClick={handleOpen}
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
+        >
+          Create <AddIcon />
+        </button>
+        <button
+          onClick={logout}
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
+        >
+          Logout
+        </button>
+      </div>
       <Modal
         open={open}
         onClose={handleClose}
@@ -166,7 +183,9 @@ export default function BasicModal() {
             </div>
             <div className="w-full flex justify-end">
               <button
-                disabled={isLoading}
+                disabled={
+                  isLoading || !eventDescription || !eventName || !eventDuration
+                }
                 type="submit"
                 className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white focus:outline-none"
               >

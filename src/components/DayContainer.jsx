@@ -3,9 +3,9 @@ import TimePicker from "./TimePicker";
 import moment from "moment";
 
 const DayContainer = ({ dayName, setDaysData }) => {
-  const [isAvailable, setIsAvailable] = useState(false);
   const [from, setFrom] = useState("12:00pm");
   const [to, setTo] = useState("5:00pm");
+  const [isAvailable, setIsAvailable] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {

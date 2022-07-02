@@ -37,6 +37,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     nProgress.start();
+
     setIsLoading(true);
 
     const { error } = await supabase.auth.signIn({
@@ -79,6 +80,10 @@ export const AuthProvider = ({ children }) => {
     nProgress.done();
   };
 
+  const logout = async () => {
+    await supabase.auth.signOut();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -97,6 +102,7 @@ export const AuthProvider = ({ children }) => {
         isLoading,
         currentUser,
         authError,
+        logout,
       }}
     >
       {children}
