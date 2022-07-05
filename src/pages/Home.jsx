@@ -25,18 +25,18 @@ const Home = () => {
       <Navbar />
       <div className="h-screen z-10 flex justify-between items-center pl-36">
         <div className="max-w-3xl space-y-5">
-          <h1 className="text-7xl z-20 text-secondary-700 font-Helvetica-Now-Bold leading-[5rem]">
+          <h1 className="text-7xl z-20 text-secondary-700 font-Outfit font-bold leading-[5rem]">
             The <span className="text-primary-500">scheduling</span> app your
             were waiting
             <span className="block">for.</span>
           </h1>
-          <p className="max-w-2xl text-secondary-400 text-xl tracking-wider">
+          <p className="max-w-2xl text-secondary-400 font-Outfit font-normal text-xl tracking-wider">
             Planify is a free appointment scheduling app that makes life easier.
             The app helps you effortlessly schedule appointments.
           </p>
           <button
             onClick={signin}
-            className="text-white focus:outline-none bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-lg"
+            className="text-white focus:outline-none font-Outfit font-normal bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-lg"
           >
             Sign up for free <ArrowRightAltRoundedIcon />
           </button>

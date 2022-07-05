@@ -68,13 +68,13 @@ export default function BasicModal() {
       <div className="flex items-center space-x-2">
         <button
           onClick={handleOpen}
-          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Outfit font-noraml"
         >
           Create <AddIcon />
         </button>
         <button
           onClick={logout}
-          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Helvetica-Now-Regular"
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Outfit font-normal"
         >
           Logout
         </button>
@@ -88,20 +88,17 @@ export default function BasicModal() {
       >
         <Box sx={style} className="!overflow-y-scroll focus:!outline-none">
           <div className="mb-10">
-            <h1 className="text-xl font-Helvetica-Now-Regular text-center">
+            <h1 className="text-xl font-Outfit font-normal text-center">
               One-on-One Event
             </h1>
-            <p className="text-center text-lg font-Helvetica-Now-Light">
+            <p className="text-center text-lg font-Outfit font-normal">
               Let an invitee pick a time to meet with you.
             </p>
           </div>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div className="flex flex-col items-start space-y-1 w-full">
-              <label
-                htmlFor="event-name"
-                className="font-Helvetica-Now-Regular"
-              >
+              <label htmlFor="event-name" className="font-Outfit font-light">
                 Event name
               </label>
               <input
@@ -111,14 +108,11 @@ export default function BasicModal() {
                 onChange={(e) => setEventName(e.target.value)}
                 autoComplete="off"
                 id="event-name"
-                className="focus:outline-none border p-3 placeholder:text-base font-Helvetica-Now-Light bg-slate-50 w-full"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal bg-slate-50 w-full"
               />
             </div>
             <div className="flex flex-col items-start space-y-1 w-full">
-              <label
-                htmlFor="event-desc"
-                className="font-Helvetica-Now-Regular"
-              >
+              <label htmlFor="event-desc" className="font-Outfit font-light">
                 Description
               </label>
               <textarea
@@ -127,7 +121,7 @@ export default function BasicModal() {
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
                 placeholder="Write a summary and any details your invitee should know about the event."
-                className="focus:outline-none border p-3 placeholder:text-base font-Helvetica-Now-Light bg-slate-50 w-full"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-light bg-slate-50 w-full"
                 cols="2"
                 rows="4"
               ></textarea>
@@ -135,7 +129,7 @@ export default function BasicModal() {
             <div className="flex flex-col space-y-2">
               <label
                 htmlFor="event-duration"
-                className="font-Helvetica-Now-Regular"
+                className="font-Outfit font-normal"
               >
                 Duration
               </label>
@@ -147,7 +141,7 @@ export default function BasicModal() {
                     name="event-duration"
                     id="30-mins"
                   />
-                  <label htmlFor="30-mins" className="font-Helvetica-Now-Light">
+                  <label htmlFor="30-mins" className="font-Outfit font-light">
                     30 mins
                   </label>
                 </div>
@@ -158,7 +152,7 @@ export default function BasicModal() {
                     name="event-duration"
                     id="60 mins"
                   />
-                  <label htmlFor="60-mins" className="font-Helvetica-Now-Light">
+                  <label htmlFor="60-mins" className="font-Outfit font-light">
                     60 mins
                   </label>
                 </div>
@@ -167,7 +161,7 @@ export default function BasicModal() {
             <div className="flex flex-col space-y-2">
               <label
                 htmlFor="event-availability"
-                className="font-Helvetica-Now-Regular mb-4"
+                className="font-Outfit font-normal mb-4"
               >
                 How do you want to offer your availability for this event type?
               </label>
@@ -187,7 +181,7 @@ export default function BasicModal() {
                   isLoading || !eventDescription || !eventName || !eventDuration
                 }
                 type="submit"
-                className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Helvetica-Now-Regular px-4 py-2 text-white focus:outline-none"
+                className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Outfit font-normal px-4 py-2 text-white focus:outline-none"
               >
                 Submit
               </button>

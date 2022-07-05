@@ -2,38 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: "Helvetica-Now-Bold";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Bold.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-Black";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Black.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-ExBold";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-ExtraBold.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-ExLight";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-ExtraLight.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-Light";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Light.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-Medium";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Medium.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-Regular";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Regular.otf);
-}
-@font-face {
-  font-family: "Helvetica-Now-Thin";
-  src: url(./assets/font/1-Helvetica\ Now\ Text/HelveticaNowText-Thin.otf);
-}
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;400;500;600;700;800;900&display=swap");
 
 /* Make clicks pass-through */
 #nprogress {
@@ -110,6 +79,6 @@
     @apply flex items-center space-x-2 justify-start;
   }
   .availability-label {
-    @apply font-Helvetica-Now-Bold text-xs w-10 uppercase;
+    @apply font-Outfit font-bold text-xs w-10 uppercase;
   }
 }
