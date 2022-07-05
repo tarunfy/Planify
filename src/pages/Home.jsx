@@ -36,7 +36,7 @@ const Home = () => {
           </p>
           <button
             onClick={signin}
-            className="text-white focus:outline-none font-Outfit font-normal bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-xl"
+            className="text-white rounded-full focus:outline-none font-Outfit font-normal bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-xl"
           >
             Sign up for free <ArrowRightAltRoundedIcon />
           </button>

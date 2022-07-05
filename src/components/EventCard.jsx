@@ -23,7 +23,7 @@ const EventCard = () => {
         </p>
       </div>
       <div className="flex justify-end w-full">
-        <button className=" border-primary-500 bg-transparent text-black hover:text-white hover:bg-primary-500 border-[1px]  text-base font-Outfit font-normal px-4 py-2 focus:outline-none flex items-center transition-colors duration-300 ease-in-out">
+        <button className=" border-primary-500 bg-transparent text-black hover:text-white hover:bg-primary-500 border-[1px]  text-base font-Outfit font-normal px-4 py-2 focus:outline-none flex items-center transition-colors rounded-md duration-300 ease-in-out">
           View <RemoveRedEyeIcon className="ml-1" />
         </button>
       </div>

@@ -68,13 +68,13 @@ export default function BasicModal() {
       <div className="flex items-center space-x-2">
         <button
           onClick={handleOpen}
-          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Outfit font-noraml"
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md rounded-md focus:outline-none transition font-Outfit font-noraml"
         >
           Create <AddIcon />
         </button>
         <button
           onClick={logout}
-          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md focus:outline-none transition font-Outfit font-normal"
+          className="flex items-center bg-primary-500 px-4 py-2 text-white hover:shadow-md rounded-md focus:outline-none transition font-Outfit font-normal"
         >
           Logout
         </button>
@@ -108,7 +108,7 @@ export default function BasicModal() {
                 onChange={(e) => setEventName(e.target.value)}
                 autoComplete="off"
                 id="event-name"
-                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal bg-slate-50 w-full"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal rounded-md bg-slate-50 w-full"
               />
             </div>
             <div className="flex flex-col items-start space-y-1 w-full">
@@ -121,7 +121,7 @@ export default function BasicModal() {
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
                 placeholder="Write a summary and any details your invitee should know about the event."
-                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal bg-slate-50 w-full"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal rounded-md bg-slate-50 w-full"
                 cols="2"
                 rows="4"
               ></textarea>
@@ -181,7 +181,7 @@ export default function BasicModal() {
                   isLoading || !eventDescription || !eventName || !eventDuration
                 }
                 type="submit"
-                className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Outfit font-normal px-4 py-2 text-white focus:outline-none"
+                className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Outfit rounded-md font-normal px-4 py-2 text-white focus:outline-none"
               >
                 Submit
               </button>
