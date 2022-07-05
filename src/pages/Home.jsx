@@ -3,10 +3,23 @@ import { AuthContext } from "../contexts/AuthContext";
 import heroImg from "../assets/images/meeting.jpeg";
 import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
 import Navbar from "../components/Navbar";
-import Auth from "../components/AuthModal";
+import { ToastContainer, toast } from "react-toastify";
 
 const Home = () => {
-  const { handleOpen } = useContext(AuthContext);
+  const { signin, authError } = useContext(AuthContext);
+
+  if (authError) {
+    toast.error(authError, {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  }
+
   return (
     <>
       <Navbar />
@@ -22,7 +35,7 @@ const Home = () => {
             The app helps you effortlessly schedule appointments.
           </p>
           <button
-            onClick={() => handleOpen("signup")}
+            onClick={signin}
             className="text-white focus:outline-none bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-lg"
           >
             Sign up for free <ArrowRightAltRoundedIcon />
@@ -36,7 +49,7 @@ const Home = () => {
           />
         </div>
       </div>
-      <Auth />
+      <ToastContainer />
     </>
   );
 };
