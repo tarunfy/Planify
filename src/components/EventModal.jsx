@@ -88,10 +88,10 @@ export default function BasicModal() {
       >
         <Box sx={style} className="!overflow-y-scroll focus:!outline-none">
           <div className="mb-10">
-            <h1 className="text-xl font-Outfit font-normal text-center">
+            <h1 className="text-2xl font-Outfit font-normal text-center">
               One-on-One Event
             </h1>
-            <p className="text-center text-lg font-Outfit font-normal">
+            <p className="text-center underline text-lg font-Outfit font-light">
               Let an invitee pick a time to meet with you.
             </p>
           </div>
@@ -121,7 +121,7 @@ export default function BasicModal() {
                 value={eventDescription}
                 onChange={(e) => setEventDescription(e.target.value)}
                 placeholder="Write a summary and any details your invitee should know about the event."
-                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-light bg-slate-50 w-full"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal bg-slate-50 w-full"
                 cols="2"
                 rows="4"
               ></textarea>
