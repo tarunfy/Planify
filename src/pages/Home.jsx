@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
 
 const Home = () => {
-  const { signin, authError } = useContext(AuthContext);
+  const { signin, authError, isLoading } = useContext(AuthContext);
 
   if (authError) {
     toast.error(authError, {
@@ -20,6 +20,8 @@ const Home = () => {
     });
   }
 
+  console.log(isLoading);
+
   return (
     <>
       <Navbar />
@@ -31,12 +33,13 @@ const Home = () => {
             <span className="block text-primary-500">for.</span>
           </h1>
           <p className="max-w-[40rem] text-secondary-400 font-Outfit font-extralight text-xl tracking-wider ">
-            Planify is a free appointment scheduling app that makes life easier.
+            Planpot is a free appointment scheduling app that makes life easier.
             The app helps you effortlessly schedule appointments.
           </p>
           <button
+            disabled={isLoading}
             onClick={signin}
-            className="text-white rounded-full focus:outline-none font-Outfit font-normal bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-xl"
+            className="text-white disabled:bg-primary-500/50 disabled:text-white/50 disabled:cursor-not-allowed rounded-full focus:outline-none font-Outfit font-normal bg-primary-500 hover:bg-primary-600 transition px-10 py-5 text-xl"
           >
             Sign up for free <ArrowRightAltRoundedIcon />
           </button>

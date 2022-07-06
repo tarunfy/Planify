@@ -11,20 +11,26 @@ export const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     supabase.auth.onAuthStateChange((event, session) => {
-      console.log("auth state changed called");
       setCurrentUser(session?.user);
     });
   }, []);
 
   const signin = async () => {
+    setIsLoading(true);
     nProgress.start();
-    const res = await supabase.auth.signIn({ provider: "google" });
+    const res = await supabase.auth.signIn(
+      { provider: "google" },
+      {
+        redirectTo: "http://localhost:3000/dashboard",
+      }
+    );
     if (res.error) {
       setAuthError(res.error.message);
       return;
     }
     setCurrentUser(res.user);
     nProgress.done();
+    setIsLoading(false);
   };
 
   const logout = async () => {
