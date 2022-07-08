@@ -1,18 +1,13 @@
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import EditIcon from "@mui/icons-material/Edit";
+import ViewEventModal from "./ViewEventModal";
 
 const EventCard = () => {
   return (
     <div className="bg-white border-t-4 border-t-primary-600 w-full p-5 rounded-md shadow-md flex justify-center  items-center flex-col space-y-2">
       <div className="w-full space-y-2">
-        <div className="flex w-full justify-between items-center">
-          <h1 className="font-Outfit font-extrabold text-3xl text-secondary-700">
-            My Event
-          </h1>
-          <div>
-            <EditIcon className="cursor-pointer" />
-          </div>
-        </div>
+        <h1 className="font-Outfit font-extrabold text-3xl text-secondary-700">
+          My Event
+        </h1>
+
         <p className="font-Outfit font-normal  text-lg text-secondary-500">
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Consequatur
           temporibus dolorum veritatis facilis! Illum fugiat a quaerat
@@ -23,9 +18,7 @@ const EventCard = () => {
         </p>
       </div>
       <div className="flex justify-end w-full">
-        <button className=" border-primary-500 bg-transparent text-black hover:text-white hover:bg-primary-500 border-[1px]  text-base font-Outfit font-normal px-4 py-2 focus:outline-none flex items-center transition-colors rounded-sm duration-300 ease-in-out">
-          View <RemoveRedEyeIcon className="ml-1" />
-        </button>
+        <ViewEventModal />
       </div>
     </div>
   );

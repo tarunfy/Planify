@@ -1,5 +1,5 @@
 import EventCard from "../components/EventCard";
-import EventModal from "../components/EventModal";
+import CreateEventModal from "../components/CreateEventModal";
 
 const Dashboard = () => {
   return (
@@ -9,7 +9,7 @@ const Dashboard = () => {
           <h1 className="font-Outfit font-extrabold tracking-tight text-5xl">
             Your Plans
           </h1>
-          <EventModal />
+          <CreateEventModal />
         </div>
         <div div className="w-full grid grid-cols-3 gap-5">
           <EventCard />
