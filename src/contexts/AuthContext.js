@@ -1,40 +1,55 @@
 import { createContext, useState, useEffect } from "react";
 import nProgress from "nprogress";
-import { supabase } from "../utils/dbConfig";
+import { auth, db } from "../utils/dbConfig";
+import firebase from "firebase";
 
 export const AuthContext = createContext(null);
 
 export const AuthProvider = ({ children }) => {
-  const [currentUser, setCurrentUser] = useState(supabase.auth.user());
+  const [fetchingUser, setFetchingUser] = useState(true);
+  const [currentUser, setCurrentUser] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [authError, setAuthError] = useState("");
 
   useEffect(() => {
-    supabase.auth.onAuthStateChange((event, session) => {
-      setCurrentUser(session?.user);
+    auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        await db.collection("users").doc(user.uid).set({
+          userId: user.uid,
+          name: user.displayName,
+          profilePhoto: user.photoURL,
+          email: user.email,
+        });
+        setCurrentUser({
+          userId: user.uid,
+          name: user.displayName,
+          profilePhoto: user.photoURL,
+          email: user.email,
+        });
+      } else {
+        setCurrentUser(null);
+      }
+      setFetchingUser(false);
     });
   }, []);
 
   const signin = async () => {
     setIsLoading(true);
     nProgress.start();
-    const res = await supabase.auth.signIn(
-      { provider: "google" },
-      {
-        redirectTo: "http://localhost:3000/dashboard",
-      }
-    );
-    if (res.error) {
-      setAuthError(res.error.message);
-      return;
+    let provider = new firebase.auth.GoogleAuthProvider();
+
+    try {
+      await auth.signInWithPopup(provider);
+    } catch (err) {
+      setAuthError(err.message);
     }
-    setCurrentUser(res.user);
+
     nProgress.done();
     setIsLoading(false);
   };
 
   const logout = async () => {
-    await supabase.auth.signOut();
+    await auth.signOut();
   };
 
   return (
@@ -47,7 +62,7 @@ export const AuthProvider = ({ children }) => {
         logout,
       }}
     >
-      {children}
+      {!fetchingUser && children}
     </AuthContext.Provider>
   );
 };
