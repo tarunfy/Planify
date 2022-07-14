@@ -35,7 +35,9 @@ export default function BasicModal({ event }) {
       >
         <Box sx={style}>
           <div className="font-Outfit space-y-4 text-secondary-800">
-            <h1 className="text-center text-3xl font-bold">{event?.name}</h1>
+            <h1 className="text-center text-3xl font-bold">
+              {event?.eventName}
+            </h1>
             <p className="text-center">{event?.description}</p>
             <div className="flex w-full items-center text-center text-secondary-400 justify-center">
               <AccessTimeIcon className="mr-2 t" />

@@ -20,8 +20,6 @@ const Home = () => {
     });
   }
 
-  console.log(isLoading);
-
   return (
     <>
       <Navbar />

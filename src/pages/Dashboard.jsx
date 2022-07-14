@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import { EventContext } from "../contexts/EventContext";
 import EventCard from "../components/EventCard";
 import CreateEventModal from "../components/CreateEventModal";

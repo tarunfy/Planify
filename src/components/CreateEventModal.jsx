@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { EventContext } from "../contexts/EventContext";
-import nProgress from "nprogress";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "@mui/material/Modal";
@@ -43,7 +42,7 @@ export default function BasicModal() {
     e.preventDefault();
 
     const data = {
-      name: eventName,
+      eventName,
       description: eventDescription,
       duration: eventDuration,
       daysData,

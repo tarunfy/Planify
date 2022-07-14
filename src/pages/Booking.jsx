@@ -1,41 +1,55 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../contexts/AuthContext";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { db } from "../utils/dbConfig";
 import Calendar from "react-calendar";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import "react-calendar/dist/Calendar.css";
 
 const Booking = () => {
-  const { currentUser } = useContext(AuthContext);
   const [date, setDate] = useState(new Date());
+  const [data, setData] = useState(null);
+  const [isFetching, setIsFetching] = useState(true);
+
+  const params = useParams();
 
   useEffect(() => {
-    console.log(date);
-  }, [date]);
+    const fetchInfo = async () => {
+      const res1 = await db.collection("users").doc(params.userId).get();
+
+      const res2 = await db
+        .collection("users")
+        .doc(params.userId)
+        .collection("events")
+        .doc(params.eventId)
+        .get();
+
+      setData({ ...res1.data(), ...res2.data() });
+      setIsFetching(false);
+    };
+
+    fetchInfo();
+  }, []);
+
+  if (isFetching) return <div></div>;
 
   return (
     <div className="max-w-[800px] font-Outfit my-28 shadow-custom rounded-xl h-[500px] flex items-center justify-between max-h-screen mx-auto">
       <div className="w-2/5 p-10 bg-secondary-500 h-full rounded-tl-xl rounded-bl-xl">
         <img
-          src={currentUser?.user_metadata?.picture}
+          src={data?.profilePhoto}
           alt="avatar"
           className="h-14 w-14 rounded-full mb-3"
         />
-        <h1 className="text-2xl font-medium text-white/90">
-          {currentUser?.user_metadata.name}
-        </h1>
-        <p className="text-lg text-white/80">
-          {currentUser?.user_metadata.email}
-        </p>
+        <h1 className="text-2xl font-medium text-white/90">{data?.name}</h1>
+        <p className="text-lg text-white/80">{data?.email}</p>
         <div className="mt-10 space-y-2">
-          <h2 className="text-white text-xl">Event 1</h2>
-          <p className="text-white/90 font-light">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima rem
-            magnam maxime. Corporis enim delectus ullam consequatur quam
-            pariatur necessitatibus?
+          <h2 className="text-white text-xl">{data?.eventName}</h2>
+          <p className="text-white/90 font-light break-words">
+            {data?.description}
           </p>
           <div className="flex w-full items-center text-secondary-300">
             <AccessTimeIcon className="mr-2 t" />
-            <p className="font-normal text-xl">30 mins</p>
+            <p className="font-normal text-xl">{data?.duration}</p>
           </div>
         </div>
       </div>

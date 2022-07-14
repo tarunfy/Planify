@@ -25,7 +25,7 @@ function App() {
             currentUser ? <Dashboard {...props} /> : <Redirect to="/" />
           }
         />
-        <Route exact path="/booking/:id" component={Booking} />
+        <Route exact path="/booking/:userId/:eventId" component={Booking} />
         <Route path="*" render={() => <Redirect to="/" />} />
       </Switch>
     </>
