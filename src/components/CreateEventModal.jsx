@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { EventContext } from "../contexts/EventContext";
 import nProgress from "nprogress";
 import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
@@ -21,13 +22,13 @@ const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
 
 export default function BasicModal() {
   const [open, setOpen] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [daysData, setDaysData] = useState({});
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
 
   const { logout } = useContext(AuthContext);
+  const { createEvent, isLoading } = useContext(EventContext);
 
   const handleOpen = () => setOpen(true);
 
@@ -38,10 +39,8 @@ export default function BasicModal() {
     setEventName("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    nProgress.start();
 
     const data = {
       name: eventName,
@@ -50,17 +49,13 @@ export default function BasicModal() {
       daysData,
     };
 
-    console.log(data);
+    await createEvent(data);
 
-    setTimeout(() => {
-      setOpen(false);
-      setIsLoading(false);
-      setEventDescription("");
-      setEventDuration("");
-      setEventName("");
-      setDaysData({});
-      nProgress.done();
-    }, 3000);
+    setOpen(false);
+    setEventDescription("");
+    setEventDuration("");
+    setEventName("");
+    setDaysData({});
   };
 
   return (
