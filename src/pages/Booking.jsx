@@ -54,8 +54,12 @@ const Booking = () => {
           </div>
         </div>
       </div>
-      <div className="w-[75%] overflow-y-scroll flex justify-between items-start p-10 h-full rounded-tr-xl rounded-br-xl">
-        <div className="border-r-2 pr-2 w-2/3">
+      <div className="w-[75%] flex   items-start p-10 h-full rounded-tr-xl rounded-br-xl">
+        <div
+          className={`  ${
+            date ? "w-[60%] border-r-2 pr-2" : "w-full"
+          } transition-all duration-300 ease-in-out`}
+        >
           <h1 className="text-2xl font-bold mb-3">Select a Date</h1>
           <Calendar value={date} onChange={setDate} />
         </div>

@@ -2,10 +2,14 @@ import BookingTimeCard from "./BookingTimeCard";
 import moment from "moment";
 import { useState } from "react";
 import { useEffect } from "react";
+import BookingDetailsModal from "./BookingDetailsModal";
+import { db } from "../utils/dbConfig";
+import { useParams } from "react-router";
 
 const BookingTimeContainer = ({ date, daysData }) => {
   let oneDate = moment(date, "DD-MM-YYYY");
   let dayName = oneDate.format("dddd");
+  const { eventId, userId } = useParams();
 
   const [timeslots, setTimeslots] = useState([]);
 
@@ -13,11 +17,10 @@ const BookingTimeContainer = ({ date, daysData }) => {
     createSlots();
   }, [date]);
 
-  const createSlots = () => {
+  const createSlots = async () => {
     const day = daysData[dayName.substring(0, 3).toLowerCase()];
 
     if (day !== null) {
-      console.log("day", day);
       let initialTime = day.from;
 
       const [finHr, finMin] = day.to.split(":");
@@ -26,7 +29,7 @@ const BookingTimeContainer = ({ date, daysData }) => {
       const [hr, min] = initialTime.split(":");
       let dateObj = new Date(new Date(date).setHours(hr, min));
 
-      const tsl = [];
+      let tsl = [];
 
       tsl.push(dateObj.toTimeString().substring(0, 5));
 
@@ -37,6 +40,18 @@ const BookingTimeContainer = ({ date, daysData }) => {
 
       tsl.pop();
 
+      const snap = await db
+        .collection("users")
+        .doc(userId)
+        .collection("events")
+        .doc(eventId)
+        .collection("bookings")
+        .where("date", "==", oneDate.format("DD-MM-YYYY"))
+        .get();
+
+      const bookedTs = snap.docs.map((doc) => doc.data().ts);
+
+      tsl = tsl.filter((ts) => !bookedTs.includes(ts));
       setTimeslots(tsl);
     } else {
       setTimeslots([]);
@@ -44,14 +59,18 @@ const BookingTimeContainer = ({ date, daysData }) => {
   };
 
   return (
-    <div className="transition-all duration-300 ease-in-out px-10  space-y-5">
-      <h1 className="text-base font-light">{`${dayName},  ${date.getDate()}`}</h1>
+    <div className="transition-all flex items-center flex-col justify-center w-[40%] duration-300  overflow-y-scroll ease-in-out  space-y-5">
+      <h1 className="text-xl text-center font-normal">{`${dayName},  ${date.getDate()}`}</h1>
 
-      {timeslots.length > 0 ? (
-        timeslots.map((ts) => <p>{ts}</p>)
-      ) : (
-        <p className="text-bold">Not Available</p>
-      )}
+      <div className="space-y-5 max-h-[500px]">
+        {timeslots.length > 0 ? (
+          timeslots.map((ts, index) => (
+            <BookingDetailsModal key={index} date={oneDate} ts={ts} />
+          ))
+        ) : (
+          <p className="text-bold text-center">Not Available</p>
+        )}
+      </div>
     </div>
   );
 };
