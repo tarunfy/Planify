@@ -30,29 +30,29 @@ export default function BasicTimePicker({ from, to, setFrom, setTo, error }) {
 
 const Opt = () => (
   <>
-    <option value="12:00pm">12:00pm</option>
-    <option value="1:00pm">1:00pm</option>
-    <option value="2:00pm">2:00pm</option>
-    <option value="3:00pm">3:00pm</option>
-    <option value="4:00pm">4:00pm</option>
-    <option value="5:00pm">5:00pm</option>
-    <option value="6:00pm">6:00pm</option>
-    <option value="7:00pm">7:00pm</option>
-    <option value="8:00pm">8:00pm</option>
-    <option value="9:00pm">9:00pm</option>
-    <option value="10:00pm">10:00pm</option>
-    <option value="11:00pm">11:00pm</option>
-    <option value="12:00am">12:00am</option>
-    <option value="1:00am">1:00am</option>
-    <option value="2:00am">2:00am</option>
-    <option value="3:00am">3:00am</option>
-    <option value="4:00am">4:00am</option>
-    <option value="5:00am">5:00am</option>
-    <option value="6:00am">6:00am</option>
-    <option value="7:00am">7:00am</option>
-    <option value="8:00am">8:00am</option>
-    <option value="9:00am">9:00am</option>
-    <option value="10:00am">10:00am</option>
-    <option value="11:00am">11:00am</option>
+    <option value="12:00">12:00</option>
+    <option value="01:00">01:00</option>
+    <option value="02:00">02:00</option>
+    <option value="03:00">03:00</option>
+    <option value="04:00">04:00</option>
+    <option value="05:00">05:00</option>
+    <option value="06:00">06:00</option>
+    <option value="07:00">07:00</option>
+    <option value="08:00">08:00</option>
+    <option value="09:00">09:00</option>
+    <option value="10:00">10:00</option>
+    <option value="11:00">11:00</option>
+    <option value="12:00">12:00</option>
+    <option value="13:00">13:00</option>
+    <option value="14:00">14:00</option>
+    <option value="15:00">15:00</option>
+    <option value="16:00">16:00</option>
+    <option value="17:00">17:00</option>
+    <option value="18:00">18:00</option>
+    <option value="19:00">19:00</option>
+    <option value="20:00">20:00</option>
+    <option value="21:00">21:00</option>
+    <option value="22:00">22:00</option>
+    <option value="23:00">23:00</option>
   </>
 );

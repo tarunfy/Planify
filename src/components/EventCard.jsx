@@ -10,7 +10,7 @@ const EventCard = ({ event }) => {
   const handleCopy = (e) => {
     navigator.clipboard.writeText(e.target.id);
     toast.success("Link copied 👍", {
-      position: "top-right",
+      position: "bottom-right",
       autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
