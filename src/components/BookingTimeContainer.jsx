@@ -1,4 +1,3 @@
-import BookingTimeCard from "./BookingTimeCard";
 import moment from "moment";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -15,7 +14,7 @@ const BookingTimeContainer = ({ date, daysData }) => {
 
   useEffect(() => {
     createSlots();
-  }, [date]);
+  }, [date, timeslots]);
 
   const createSlots = async () => {
     const day = daysData[dayName.substring(0, 3).toLowerCase()];

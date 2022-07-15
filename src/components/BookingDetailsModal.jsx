@@ -4,6 +4,9 @@ import Modal from "@mui/material/Modal";
 import { useRef } from "react";
 import { db } from "../utils/dbConfig";
 import { useParams } from "react-router";
+import nProgress from "nprogress";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -32,19 +35,33 @@ const BookingDetailsModal = ({ ts, date }) => {
     e.preventDefault();
     const name = nameRef.current.value;
     const email = emailRef.current.value;
+    nProgress.start();
 
     setIsLoading(true);
-    await db
-      .collection("users")
-      .doc(userId)
-      .collection("events")
-      .doc(eventId)
-      .collection("bookings")
-      .add({ ts, date: date.format("DD-MM-YYYY"), name, email });
+    try {
+      await db
+        .collection("users")
+        .doc(userId)
+        .collection("events")
+        .doc(eventId)
+        .collection("bookings")
+        .add({ ts, date: date.format("DD-MM-YYYY"), name, email });
+    } catch (err) {
+      console.log(err.message);
+    }
 
     setIsLoading(false);
-
+    nProgress.done();
     handleClose();
+    toast.success("Meeting has been scheduled 🦄", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
@@ -106,6 +123,7 @@ const BookingDetailsModal = ({ ts, date }) => {
           </form>
         </Box>
       </Modal>
+      <ToastContainer />
     </div>
   );
 };

@@ -71,6 +71,16 @@ export default function BasicModal() {
     setEventDuration("");
     setEventName("");
     setDaysData({});
+
+    toast.success("Event has been created 🥳", {
+      position: "top-right",
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
   };
 
   return (
