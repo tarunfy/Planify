@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import AddIcon from "@mui/icons-material/Add";
 import Modal from "@mui/material/Modal";
 import DayContainer from "./DayContainer";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const style = {
   position: "absolute",
@@ -46,9 +48,23 @@ export default function BasicModal() {
       description: eventDescription,
       duration: eventDuration,
       daysData,
+      timeStamp: new Date(),
     };
 
-    await createEvent(data);
+    const res = await createEvent(data);
+
+    if (res.error) {
+      toast.error(res.error, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return;
+    }
 
     setOpen(false);
     setEventDescription("");
@@ -183,6 +199,7 @@ export default function BasicModal() {
           </form>
         </Box>
       </Modal>
+      <ToastContainer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import heroImg from "../assets/images/meeting.jpeg";
 import ArrowRightAltRoundedIcon from "@mui/icons-material/ArrowRightAltRounded";
 import Navbar from "../components/Navbar";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Home = () => {
   const { signin, authError, isLoading } = useContext(AuthContext);

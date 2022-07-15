@@ -27,6 +27,7 @@ export const EventProvider = ({ children }) => {
         .collection("users")
         .doc(currentUser.userId)
         .collection("events")
+        .orderBy("timeStamp", "desc")
         .get();
 
       res.docs.map((event) => {
@@ -44,6 +45,7 @@ export const EventProvider = ({ children }) => {
   const createEvent = async (eventData) => {
     setIsLoading(true);
     nProgress.start();
+    let error;
     try {
       await db
         .collection("users")
@@ -51,11 +53,14 @@ export const EventProvider = ({ children }) => {
         .collection("events")
         .add(eventData);
     } catch (err) {
-      console.log(err.message);
+      error = err.message;
     }
     fetchEvents();
     nProgress.done();
     setIsLoading(false);
+    return {
+      error: error ? error : null,
+    };
   };
 
   const deleteEvent = async () => {};
