@@ -3,10 +3,11 @@ import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useRef } from "react";
 import { db } from "../utils/dbConfig";
-import { useParams } from "react-router";
+import { useParams, useHistory } from "react-router";
 import nProgress from "nprogress";
-import { ToastContainer, toast } from "react-toastify";
+
 import "react-toastify/dist/ReactToastify.css";
+import moment from "moment";
 
 const style = {
   position: "absolute",
@@ -18,10 +19,12 @@ const style = {
   p: 4,
 };
 
-const BookingDetailsModal = ({ ts, date }) => {
+const BookingDetailsModal = ({ ts, date, data }) => {
   const { eventId, userId } = useParams();
   const nameRef = useRef();
   const emailRef = useRef();
+
+  const history = useHistory();
 
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -52,16 +55,8 @@ const BookingDetailsModal = ({ ts, date }) => {
 
     setIsLoading(false);
     nProgress.done();
+    history.push("/booking/successfull");
     handleClose();
-    toast.success("Meeting has been scheduled 🦄", {
-      position: "top-right",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
   };
 
   return (
@@ -80,11 +75,22 @@ const BookingDetailsModal = ({ ts, date }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style} className="!overflow-y-scroll focus:!outline-none">
-          <div className="mb-10">
-            <h1 className="text-center font-bold text-2xl">
-              Book a meeting at <span className="underline">{`${ts}`}</span>
+        <Box
+          sx={style}
+          className="!overflow-y-scroll focus:!outline-none w-full max-w-lg"
+        >
+          <div className="mb-4 space-y-3">
+            <h1 className="font-semibold font-Outfit text-2xl">
+              Let's book a meeting
             </h1>
+            <p className="font-Outfit font-light text-base max-w-sm">
+              You're about to book a meeting with{" "}
+              <span className="font-medium">{data.name}</span> on{" "}
+              <span className="font-medium">
+                {moment(date).format("DD-MM-YYYY")}
+              </span>{" "}
+              at <span className="font-medium">{ts}</span>
+            </p>
           </div>
 
           <form className="space-y-5" onSubmit={handleSubmit}>
@@ -116,14 +122,13 @@ const BookingDetailsModal = ({ ts, date }) => {
             </div>
             <button
               type="submit"
-              className="px-6 py-2 text-lg font-semibold bg-primary-600 text-white rounded-md"
+              className="px-6 py-2 text-lg font-Outfit font-semibold bg-primary-600 text-white rounded-md"
             >
               Submit
             </button>
           </form>
         </Box>
       </Modal>
-      <ToastContainer />
     </div>
   );
 };

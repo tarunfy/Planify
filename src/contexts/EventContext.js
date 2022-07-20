@@ -63,8 +63,6 @@ export const EventProvider = ({ children }) => {
     };
   };
 
-  const deleteEvent = async () => {};
-
   return (
     <EventContext.Provider
       value={{
@@ -72,7 +70,6 @@ export const EventProvider = ({ children }) => {
         isLoading,
         createEvent,
         fetchEvents,
-        deleteEvent,
         events,
       }}
     >

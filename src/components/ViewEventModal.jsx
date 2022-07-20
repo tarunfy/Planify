@@ -35,20 +35,35 @@ export default function BasicModal({ event }) {
       >
         <Box sx={style}>
           <div className="font-Outfit space-y-4 text-secondary-800">
-            <h1 className="text-center text-3xl font-bold">
-              {event?.eventName}
-            </h1>
-            <p className="text-center">{event?.description}</p>
-            <div className="flex w-full items-center text-center text-secondary-400 justify-center">
-              <AccessTimeIcon className="mr-2 t" />
-              <p className="font-normal text-xl">{event?.duration}</p>
+            <div className="flex items-center justify-between w-full">
+              <h1 className="text-5xl font-SemiBold capitalize">
+                {event?.eventName}
+              </h1>
+              <div className="flex items-center text-secondary-400 justify-center">
+                <AccessTimeIcon className="mr-2 t" />
+                <p className="font-normal text-normal">{event?.duration}</p>
+              </div>
             </div>
-            <div className="space-y-2 w-full flex justify-center">
+            <p className="max-w-lg font-light">{event?.description}</p>
+            <p className="max-w-lg font-normal">
+              Meet link:
+              <a
+                href={event?.meetLink}
+                target="_blank"
+                className="font-medium text-blue-600"
+              >
+                {" "}
+                {event?.meetLink}
+              </a>
+            </p>
+
+            <div className="space-y-2">
               <div>
+                <h4 className="text-xl font-semibold">TimeSlots:</h4>
                 {Object.keys(event.daysData).map((key, index) => (
                   <div key={index} className="flex items-center">
                     <div className="w-10">
-                      <h3 className="text-lg font-semibold">{key}</h3>
+                      <h3 className="text-base font-medium">{key}</h3>
                     </div>
                     {event.daysData[key] !== null ? (
                       <div className="flex items-center w-52 justify-end text-right">

@@ -27,6 +27,7 @@ export default function BasicModal() {
   const [eventName, setEventName] = useState("");
   const [eventDescription, setEventDescription] = useState("");
   const [eventDuration, setEventDuration] = useState("");
+  const [meetLink, setMeetLink] = useState("");
 
   const { logout } = useContext(AuthContext);
   const { createEvent, isLoading } = useContext(EventContext);
@@ -38,6 +39,7 @@ export default function BasicModal() {
     setEventDescription("");
     setEventDuration("");
     setEventName("");
+    setMeetLink("");
   };
 
   const handleSubmit = async (e) => {
@@ -48,6 +50,7 @@ export default function BasicModal() {
       description: eventDescription,
       duration: eventDuration,
       daysData,
+      meetLink,
       timeStamp: new Date(),
     };
 
@@ -70,6 +73,7 @@ export default function BasicModal() {
     setEventDescription("");
     setEventDuration("");
     setEventName("");
+    setMeetLink("");
     setDaysData({});
 
     toast.success("Event has been created 🥳", {
@@ -128,6 +132,20 @@ export default function BasicModal() {
                 onChange={(e) => setEventName(e.target.value)}
                 autoComplete="off"
                 id="event-name"
+                className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal rounded-md bg-slate-50 w-full"
+              />
+            </div>
+            <div className="flex flex-col items-start space-y-1 w-full">
+              <label htmlFor="meet-link" className="font-Outfit font-light">
+                Meet link
+              </label>
+              <input
+                type="text"
+                required
+                value={meetLink}
+                onChange={(e) => setMeetLink(e.target.value)}
+                autoComplete="off"
+                id="meet-link"
                 className="focus:outline-none border p-3 placeholder:text-base font-Outfit font-normal rounded-md bg-slate-50 w-full"
               />
             </div>
@@ -198,7 +216,11 @@ export default function BasicModal() {
             <div className="w-full flex justify-end">
               <button
                 disabled={
-                  isLoading || !eventDescription || !eventName || !eventDuration
+                  isLoading ||
+                  !eventDescription ||
+                  !eventName ||
+                  !eventDuration ||
+                  !meetLink
                 }
                 type="submit"
                 className="bg-primary-500 disabled:cursor-not-allowed disabled:bg-primary-500/50 disabled:text-white/50 text-lg font-Outfit rounded-md font-normal px-4 py-2 text-white focus:outline-none"

@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import Dashboard from "./pages/Dashboard";
 import Booking from "./pages/Booking";
 import { Switch, Route, Redirect } from "react-router-dom";
+import BookingSuccessfull from "./pages/BookingSuccessfull";
 
 function App() {
   const { currentUser } = useContext(AuthContext);
@@ -26,6 +27,11 @@ function App() {
           }
         />
         <Route exact path="/booking/:userId/:eventId" component={Booking} />
+        <Route
+          exact
+          path="/booking/successfull"
+          component={BookingSuccessfull}
+        />
         <Route path="*" render={() => <Redirect to="/" />} />
       </Switch>
     </>

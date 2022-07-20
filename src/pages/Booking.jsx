@@ -49,7 +49,7 @@ const Booking = () => {
           <h1 className="text-2xl font-medium text-white/90">{data?.name}</h1>
           <p className="text-base text-white/80">{data?.email}</p>
           <div className="mt-10 space-y-2">
-            <h2 className="text-white text-xl">{data?.eventName}</h2>
+            <h2 className="text-white text-xl capitalize">{data?.eventName}</h2>
             <p className="text-white/90 font-light text-sm break-words">
               {data?.description}
             </p>
@@ -69,7 +69,11 @@ const Booking = () => {
             <Calendar value={date} onChange={setDate} />
           </div>
           {date && (
-            <BookingTimeContainer daysData={data?.daysData} date={date} />
+            <BookingTimeContainer
+              daysData={data?.daysData}
+              date={date}
+              data={data}
+            />
           )}
         </div>
       </div>

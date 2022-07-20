@@ -5,7 +5,7 @@ import BookingDetailsModal from "./BookingDetailsModal";
 import { db } from "../utils/dbConfig";
 import { useParams } from "react-router";
 
-const BookingTimeContainer = ({ date, daysData }) => {
+const BookingTimeContainer = ({ date, daysData, data }) => {
   let oneDate = moment(date, "DD-MM-YYYY");
   let dayName = oneDate.format("dddd");
   const { eventId, userId } = useParams();
@@ -64,7 +64,12 @@ const BookingTimeContainer = ({ date, daysData }) => {
       <div className="space-y-5 max-h-[500px]">
         {timeslots.length > 0 ? (
           timeslots.map((ts, index) => (
-            <BookingDetailsModal key={index} date={oneDate} ts={ts} />
+            <BookingDetailsModal
+              key={index}
+              date={oneDate}
+              ts={ts}
+              data={data}
+            />
           ))
         ) : (
           <p className="text-bold text-center">Not Available</p>

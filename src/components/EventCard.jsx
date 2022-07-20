@@ -42,7 +42,9 @@ const EventCard = ({ event }) => {
         >
           Copy link
         </p>
-        <ViewEventModal event={event} />
+        <div className="spac-x-2">
+          <ViewEventModal event={event} />
+        </div>
       </div>
       <ToastContainer />
     </div>
