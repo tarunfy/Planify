@@ -2,7 +2,6 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import Modal from "@mui/material/Modal";
-import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
 
 const style = {
   position: "absolute",
@@ -25,7 +24,7 @@ export default function BasicModal({ event }) {
         onClick={handleOpen}
         className=" border-primary-500 bg-transparent text-black hover:text-white hover:bg-primary-500 border-[1px]  text-base font-Outfit font-normal px-4 py-2 focus:outline-none flex items-center transition-colors rounded-sm duration-300 ease-in-out"
       >
-        View <RemoveRedEyeIcon className="ml-1" />
+        View
       </button>
       <Modal
         open={open}

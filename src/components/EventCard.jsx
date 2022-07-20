@@ -3,6 +3,7 @@ import { AuthContext } from "../contexts/AuthContext";
 import ViewEventModal from "./ViewEventModal";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 
 const EventCard = ({ event }) => {
   const { currentUser } = useContext(AuthContext);
@@ -42,7 +43,13 @@ const EventCard = ({ event }) => {
         >
           Copy link
         </p>
-        <div className="spac-x-2">
+        <div className="space-x-2 flex items-center">
+          <Link
+            to={`/bookings/${event.eventId}`}
+            className=" border-primary-500 bg-transparent text-black hover:text-white hover:bg-primary-500 border-[1px]  text-base font-Outfit font-normal px-4 py-2 focus:outline-none flex items-center transition-colors rounded-sm duration-300 ease-in-out"
+          >
+            Bookings
+          </Link>
           <ViewEventModal event={event} />
         </div>
       </div>

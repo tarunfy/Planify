@@ -9,6 +9,8 @@ export const EventProvider = ({ children }) => {
   const [isFetchingEvents, setIsFetchingEvents] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [events, setEvents] = useState(null);
+  const [eventBookings, setEventBookings] = useState(null);
+  const [data, setData] = useState(null);
 
   const { currentUser } = useContext(AuthContext);
 
@@ -16,7 +18,7 @@ export const EventProvider = ({ children }) => {
     if (currentUser) {
       fetchEvents();
     }
-  }, []);
+  }, [currentUser]);
 
   const fetchEvents = async () => {
     setIsFetchingEvents(true);
@@ -42,6 +44,36 @@ export const EventProvider = ({ children }) => {
     setIsFetchingEvents(false);
   };
 
+  const fetchEventBookings = async (eventId) => {
+    nProgress.start();
+    let error;
+    let data = [];
+    try {
+      const res = await db
+        .collection("users")
+        .doc(currentUser.userId)
+        .collection("events")
+        .doc(eventId)
+        .collection("bookings")
+        .get();
+
+      res.docs.map((booking) => {
+        data.push({ ...booking.data(), bookingId: booking.id });
+      });
+
+      setEventBookings(data);
+
+      setEventBookings(data);
+    } catch (err) {
+      console.log("err");
+      error = err.message;
+    }
+    nProgress.done();
+    return {
+      error: error ? error : null,
+    };
+  };
+
   const createEvent = async (eventData) => {
     setIsLoading(true);
     nProgress.start();
@@ -63,6 +95,30 @@ export const EventProvider = ({ children }) => {
     };
   };
 
+  const fetchEventData = async (userId, eventId) => {
+    nProgress.start();
+    let error;
+
+    try {
+      const res1 = await db.collection("users").doc(userId).get();
+
+      const res2 = await db
+        .collection("users")
+        .doc(userId)
+        .collection("events")
+        .doc(eventId)
+        .get();
+
+      setData({ ...res1.data(), ...res2.data() });
+    } catch (err) {
+      console.log(err.message);
+    }
+    nProgress.done();
+    return {
+      error: error ? error : null,
+    };
+  };
+
   return (
     <EventContext.Provider
       value={{
@@ -71,6 +127,10 @@ export const EventProvider = ({ children }) => {
         createEvent,
         fetchEvents,
         events,
+        eventBookings,
+        fetchEventBookings,
+        fetchEventData,
+        data,
       }}
     >
       {!isLoading && children}

@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../utils/dbConfig";
+import { EventContext } from "../contexts/EventContext";
 import Calendar from "react-calendar";
 import AccessTimeIcon from "@mui/icons-material/AccessTime";
 import "react-calendar/dist/Calendar.css";
@@ -8,34 +8,17 @@ import BookingTimeContainer from "../components/BookingTimeContainer";
 
 const Booking = () => {
   const [date, setDate] = useState();
-  const [data, setData] = useState(null);
-  const [isFetching, setIsFetching] = useState(true);
 
-  const params = useParams();
+  const { userId, eventId } = useParams();
+
+  const { data, fetchEventData } = useContext(EventContext);
 
   useEffect(() => {
-    const fetchInfo = async () => {
-      try {
-        const res1 = await db.collection("users").doc(params.userId).get();
-
-        const res2 = await db
-          .collection("users")
-          .doc(params.userId)
-          .collection("events")
-          .doc(params.eventId)
-          .get();
-
-        setData({ ...res1.data(), ...res2.data() });
-      } catch (err) {
-        console.log(err.message);
-      }
-      setIsFetching(false);
+    const getData = async () => {
+      await fetchEventData(userId, eventId);
     };
-
-    fetchInfo();
+    getData();
   }, []);
-
-  if (isFetching) return <div></div>;
 
   return (
     <div className="flex items-center justify-center h-screen mx-auto">
