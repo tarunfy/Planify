@@ -2,9 +2,11 @@ import { useState } from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
 import { useRef } from "react";
-import { db } from "../utils/dbConfig";
+import { auth, db } from "../utils/dbConfig";
 import { useParams, useHistory } from "react-router";
 import nProgress from "nprogress";
+
+import { sendEmail } from "../utils/emailConfig";
 
 import "react-toastify/dist/ReactToastify.css";
 import moment from "moment";
@@ -49,6 +51,26 @@ const BookingDetailsModal = ({ ts, date, data }) => {
         .doc(eventId)
         .collection("bookings")
         .add({ ts, date: date.format("DD-MM-YYYY"), name, email });
+
+      // owner email
+      sendEmail({
+        user_name: name,
+        user_email: email,
+        meet_link: data.meetLink,
+        meet_date: date.format("DD-MM-YYYY"),
+        meet_time: ts,
+        reply_to: data.email,
+      });
+
+      // user email
+      sendEmail({
+        user_name: data.name,
+        user_email: data.email,
+        meet_link: data.meetLink,
+        meet_date: date.format("DD-MM-YYYY"),
+        meet_time: ts,
+        reply_to: email,
+      });
     } catch (err) {
       console.log(err.message);
     }
